@@ -16,3 +16,6 @@ Desktop.ini
 
 # env
 .env
+
+#VS Code
+.vscode
