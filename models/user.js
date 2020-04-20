@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Post = require('./post');
-
+const bcrypt = require('bcryptjs');
 const { ObjectId } = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
@@ -8,12 +8,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  hash_password: {
+  password: {
     type: String,
     required: true,
   },
-  salt: String,
-  name: {
+  username: {
     type: String,
     required: true,
   },
@@ -28,4 +27,4 @@ const userSchema = new mongoose.Schema({
   followers: [{ type: ObjectId, ref: 'User' }],
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', userSchema);
