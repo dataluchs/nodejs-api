@@ -1,6 +1,4 @@
-const config = require('../config/auth');
 const User = require('../models/user');
-
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 
@@ -24,7 +22,8 @@ exports.register = (req, res) => {
   });
 };
 
-exports.login = (req, res, next) => {
+// login user
+exports.login = (req, res) => {
   User.findOne({
     username: req.body.username,
   }).exec((err, user) => {
@@ -44,7 +43,7 @@ exports.login = (req, res, next) => {
       });
     }
     // token
-    var token = jwt.sign({ id: user.id }, config.secret, {
+    var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: 40000,
     });
 
