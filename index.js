@@ -9,6 +9,7 @@ const cors = require('cors');
 const app = express();
 
 // import routes
+const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
 const userRoutes = require('./routes/user');
 
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
 });
 
 // use routes
+app.use('/api', authRoutes);
 app.use('/api', postRoutes);
 app.use('/api', userRoutes);
 
