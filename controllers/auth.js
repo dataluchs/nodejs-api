@@ -55,3 +55,9 @@ exports.login = (req, res) => {
     });
   });
 };
+
+// logout user
+exports.logout = (req, res) => {
+  res.clearCookie('token');
+  return res.json({ message: 'Successfully signed out.' });
+};
