@@ -9,7 +9,11 @@ router.post(
   checkSignUp.checkDuplicateValues,
   authController.register
 );
+
 // login route
 router.post('/login', authController.login);
+
+// logout route
+router.get('/logout', authController.logout);
 
 module.exports = router;

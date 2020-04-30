@@ -18,6 +18,7 @@ mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(() => console.log('Connected to database'));
 
@@ -48,21 +49,6 @@ app.use((req, res, next) => {
 app.use('/api', authRoutes);
 app.use('/api', postRoutes);
 app.use('/api', userRoutes);
-
-app.use((req, res, next) => {
-  const error = new Error('Not found...!');
-  error.status = 404;
-  next(error);
-});
-
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message,
-    },
-  });
-});
 
 // server
 const port = process.env.PORT || 8080;

@@ -1,7 +1,8 @@
 const User = require('../models/user');
-var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
-
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
+const bcrypt = require('bcryptjs');
+const isAuth = require('../middleware/isAuth');
 // signup user
 exports.register = (req, res) => {
   const user = new User({
